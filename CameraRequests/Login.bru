@@ -1,0 +1,41 @@
+meta {
+  name: Login
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://{{camera-fqdn}}/cgi-bin/api.cgi?cmd=Login
+  body: json
+  auth: inherit
+}
+
+params:query {
+  cmd: Login
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  [
+    {
+      "cmd": "Login",
+      "action": 0,
+      "param": {
+        "User": {
+          "userName": "{{username}}",
+          "password": "{{password}}"
+        }
+      }
+    }
+  ]
+}
+
+script:post-response {
+  if (res.status == 200) {
+    bru.setVar('accesstoken', res.body[0].value.Token.name);
+  }
+}

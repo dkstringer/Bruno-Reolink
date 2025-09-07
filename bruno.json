@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Reolink",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

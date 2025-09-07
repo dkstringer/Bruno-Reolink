@@ -1,0 +1,30 @@
+meta {
+  name: GetTime
+  type: http
+  seq: 2
+}
+
+post {
+  url: https://{{camera-fqdn}}/cgi-bin/api.cgi?cmd=GetTime&token={{accesstoken}}
+  body: json
+  auth: inherit
+}
+
+params:query {
+  cmd: GetTime
+  token: {{accesstoken}}
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  [
+    {
+      "cmd": "GetTime",
+      "action": 1
+    }
+  ]
+}
